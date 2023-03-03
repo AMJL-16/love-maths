@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // we are using the getElementsbyTagName method to return all of those  buttons.
     
     //  iterate through an array, more modern then using indexing we use let..of..
-    for (let button of buttons) {
+    for (let button of buttons) {  // 2nd eventlistener; code to be executed when the user clicks a button
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
                 alert("You clicked Submit!");
@@ -22,10 +22,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })
 
-// 2nd eventlistener; code to be executed when the user clicks a button
-
 //to run game
+
+/**
+ *  The main game "loop", called when the script is first loaded
+ *  and after the user's asnwer has been processed
+ */
 function runGame() {
+    // creates two random numbers between 1 and 25
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 
 }
 // to check answer
