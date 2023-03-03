@@ -52,7 +52,8 @@ function runGame(gameType) {
 
 // to check answer
 
-/** what needs to go in our currently  empty check answer function?
+/** 
+ * what needs to go in our currently  empty check answer function?
  *  we need to get the user's guess.  
  * checks the answer agaisnt the first element in
  * the returned calculateCorrectAnswer array
@@ -64,8 +65,10 @@ function checkAnswer() {
 
     if (isCorrect) {
         alert("Hey! You got it right! :D");
+        incrementScore();
     } else {
         alert(`Awww.... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}`);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -94,12 +97,24 @@ function calculateCorrectAnswer() {
 }
 
 // to increment score
+
+/**
+ * gets the current score from the DOM and increments it by 1jj
+ */
 function incrementScore() {
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
 
 }
 
 // to increment wrong anwer
+
+/**
+ * gets the current tally of incorrect answers from the DOM and increments it by 1jj
+ */
 function incrementWrongAnswer() {
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 
 }
 
@@ -113,14 +128,26 @@ function displayAdditionQuestion(operand1, operand2) {
 }
 
 // subtract question
-function displaySubtractQuestion() {
+function displaySubtractQuestion(operand1, operand2) {
+
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "-";
 
 }
 // multiply question
-function displayMultiplyQuestion() {
+function displayMultiplyQuestion(operand1, operand2) {
+
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "*";
 
 }
 // division question
-function displayDivideQuestion() {
+function displayDivideQuestion(operand1, operand2) {
+
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "/";
 
 }
