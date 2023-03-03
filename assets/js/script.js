@@ -41,7 +41,13 @@ function runGame(gameType) {
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
-    } else {  /* we're also going to use  the JavaScript throw keyword.
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2);
+    } else if (gameType === "divide") {
+        displayDivideQuestion(num1, num2);
+    }else {  /* we're also going to use  the JavaScript throw keyword.
     This throw statement will stop the game  from running and whatever we supply as  
     an error message here it will print  that in the console for debugging.   */
         alert(`unknown gwm type: ${gameType}`); 
