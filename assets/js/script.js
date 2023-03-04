@@ -48,6 +48,7 @@ function runGame(gameType) {
     // creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
+    num1 *= num2;
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
@@ -56,7 +57,7 @@ function runGame(gameType) {
     } else if (gameType === "subtract") {
         displaySubtractQuestion(num1, num2);
     } else if (gameType === "division") {
-        displayDivideQuestion(num1, num2); 
+        displayDivisionQuestion(num1, num2); 
     } else {  /* we're also going to use  the JavaScript throw keyword.
     This throw statement will stop the game  from running and whatever we supply as  
     an error message here it will print  that in the console for debugging.   */
@@ -103,10 +104,11 @@ function calculateCorrectAnswer() {
     let operand2 = parseInt(document.getElementById(`operand2`).innerText);
     let operator = document.getElementById(`operator`).innerText;
 
+    
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
     } else if (operator === "/") {
-        return [Math.floor(operand1 / operand2), "division"]; 
+        return [operand1 / operand2, "division"]; 
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "-") {
@@ -150,7 +152,7 @@ function displayAdditionQuestion(operand1, operand2) {
 }
 
 // division question
-function displayDivideQuestion(operand1, operand2) {
+function displayDivisionQuestion(operand1, operand2) {
 
     document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
     document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
