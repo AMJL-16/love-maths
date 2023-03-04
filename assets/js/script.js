@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", function() {
            */ 
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+    }
+})
+
     runGame("addition");
 })
 
@@ -35,18 +41,22 @@ document.addEventListener("DOMContentLoaded", function() {
  *  and after the user's asnwer has been processed
  */
 function runGame(gameType) {
+    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").focus();
+
+
     // creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
-    } else if (gameType === "division") {
-        displayDivideQuestion(num1, num2);
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
     } else if (gameType === "subtract") {
         displaySubtractQuestion(num1, num2);
+    } else if (gameType === "division") {
+        displayDivideQuestion(num1, num2); 
     } else {  /* we're also going to use  the JavaScript throw keyword.
     This throw statement will stop the game  from running and whatever we supply as  
     an error message here it will print  that in the console for debugging.   */
@@ -96,7 +106,7 @@ function calculateCorrectAnswer() {
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
     } else if (operator === "/") {
-        return [operand1 / operand2, "division"]; 
+        return [Math.floor(operand1 / operand2), "division"]; 
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "-") {
@@ -111,7 +121,7 @@ function calculateCorrectAnswer() {
 // to increment score
 
 /**
- * gets the current score from the DOM and increments it by 1jj
+ * gets the current score from the DOM and increments it by 1
  */
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("score").innerText);
@@ -142,8 +152,8 @@ function displayAdditionQuestion(operand1, operand2) {
 // division question
 function displayDivideQuestion(operand1, operand2) {
 
-    document.getElementById("operand1").textContent = operand1 < operand2 ? operand1 : operand2;
-    document.getElementById("operand2").textContent = operand1 < operand2 ? operand2 : operand1;
+    document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById("operator").textContent = "/";
 
 }
