@@ -41,13 +41,13 @@ function runGame(gameType) {
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
+    } else if (gameType === "division") {
+        displayDivideQuestion(num1, num2);
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
     } else if (gameType === "subtract") {
         displaySubtractQuestion(num1, num2);
-    } else if (gameType === "division") {
-        displayDivideQuestion(num1, num2);
-    }else {  /* we're also going to use  the JavaScript throw keyword.
+    } else {  /* we're also going to use  the JavaScript throw keyword.
     This throw statement will stop the game  from running and whatever we supply as  
     an error message here it will print  that in the console for debugging.   */
         alert(`unknown gwm type: ${gameType}`); 
@@ -95,8 +95,12 @@ function calculateCorrectAnswer() {
 
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
+    } else if (operator === "/") {
+        return [operand1 / operand2, "division"]; 
     } else if (operator === "x") {
-         return [operand1 * operand2, "multiply"];
+        return [operand1 * operand2, "multiply"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
     } else {
         alert(`Uninmplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -135,11 +139,20 @@ function displayAdditionQuestion(operand1, operand2) {
 
 }
 
+// division question
+function displayDivideQuestion(operand1, operand2) {
+
+    document.getElementById("operand1").textContent = operand1 < operand2 ? operand1 : operand2;
+    document.getElementById("operand2").textContent = operand1 < operand2 ? operand2 : operand1;
+    document.getElementById("operator").textContent = "/";
+
+}
+
 // subtract question
 function displaySubtractQuestion(operand1, operand2) {
 
-    document.getElementById("operand1").textContent = operand1;
-    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById("operator").textContent = "-";
 
 }
@@ -149,13 +162,5 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById("operand1").textContent = operand1;
     document.getElementById("operand2").textContent = operand2;
     document.getElementById("operator").textContent = "x";
-
-}
-// division question
-function displayDivideQuestion(operand1, operand2) {
-
-    document.getElementById("operand1").textContent = operand1;
-    document.getElementById("operand2").textContent = operand2;
-    document.getElementById("operator").textContent = "/";
 
 }
